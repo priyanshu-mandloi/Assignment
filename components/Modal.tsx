@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 
-import InsertIcon from "@/assets/icons/insert";
+import InsertIcon from "@/assets/icons/insertImage";
 import ReactDOM from "react-dom";
-import RegenerateIcon from "@/assets/icons/regenerate";
-import SendIcon from "@/assets/icons/send";
+import RegenerateIcon from "@/assets/icons/regenerateImage";
+import SendIcon from "@/assets/icons/sendImage";
 import { createRoot } from "react-dom/client";
 
 const Modal = ({
@@ -29,7 +29,7 @@ const Modal = ({
 
   const insertResponseModal = () => {
     insertResponse(responseText);
-    closeModal(); // Close modal on successful insertion
+    closeModal();
   };
 
   return (
@@ -106,24 +106,18 @@ const Modal = ({
 };
 
 export default Modal;
-
-// Function to mount the modal
 export const mountModal = (insertResponse: (responseText: string) => void) => {
-  // Create a container for the modal
   const modalContainer = document.createElement("div");
   modalContainer.id = "modal-container";
   document.body.appendChild(modalContainer);
 
-  // Create the root for React 18
   const root = createRoot(modalContainer);
 
   const closeModal = () => {
-    // Unmount the modal and remove the container
     root.unmount(); // This replaces ReactDOM.unmountComponentAtNode
     modalContainer.remove();
   };
 
-  // Render the Modal into the modalContainer
   root.render(
     <Modal closeModal={closeModal} insertResponse={insertResponse} />
   );
